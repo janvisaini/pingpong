@@ -1,1 +1,52 @@
+ ##### pong.kv file#####
 
+
+<pongBall>:
+	size:100,100
+	canvas:
+		Ellipse:
+			pos:self.pos
+			size:self.size
+			
+<pongPaddle>:
+	size:50,300
+	canvas:
+		Rectangle:
+			pos:self.pos
+			size:self.size
+					
+<pongGame>:
+	ball:pong_ball
+	player1:playerLeft
+	player2:playerRight
+	
+	canvas:
+		Rectangle:
+			pos :self.center_x -5 ,0
+			size:10,self.height
+
+	Label:
+		font_size:70
+		center_x:root.width/4
+		top: root.top-50
+		text:str(root.player2.score)
+		
+	Label:
+		font_size:70
+		center_x:root.width*3/4
+		top: root.top-50
+		text:str(root.player1.score)
+		
+	pongBall:
+		id:pong_ball
+		center:self.parent.center
+	
+	pongPaddle:
+		id:playerLeft
+		x:root.x
+		center_y:root.center_y
+		
+	pongPaddle:
+		id:playerRight
+		x:root.width-self.width
+		center_y:root.center_y

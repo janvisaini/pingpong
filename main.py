@@ -4,17 +4,18 @@ from kivy.properties import NumericProperty , ReferenceListProperty,ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from random import randint,choice
-
+import sys
 
 class pongPaddle(Widget):
- score=NumericProperty(0)
+ def __init__(self):
+  score=NumericProperty(0)
  def bounceball(self,ball):
   if self.collide_widget(ball):
    if ball.velocity_x >= -25 and ball.velocity_x <= 25: 
-    ball.velocity_x*=-1.1
+    ball.velocity_x*=-1.3
     print(ball.velocity_y)
    else:
-    ball.velocity_x*=-1
+    ball.velocity_x*=-1.2
     ball.velocity_y=-4
     
    
@@ -68,7 +69,8 @@ class pongApp(App):
  def build(self):
   game=pongGame()
   game.serve_ball()
-  Clock.schedule_interval(game.update,1.0/60.0)
+  Clock.schedule_interval(game.update,2.0/120.0)
   return game
-
+ def exit():
+  sys.exit()
 pongApp().run()
